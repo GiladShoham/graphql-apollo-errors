@@ -13,6 +13,49 @@ Both libraries are great start, but they are not powerfull enough for my opinion
 Talking with some friends, I understand I'm not alone with this need, so I created this library as open source.
 
 ## Usage
+Configure apollo error formatting
+
+```js
+import express from 'express';
+import bodyParser from 'body-parser';
+import { formatErrorGenerator } from 'graphql-apollo-errors';
+import schema from './schema';
+// You can use what ever you want, this is just an example
+var logger = require('minilog')('errors-logger');
+
+const formatErrorOptions = {
+  logger,
+  hooks: {
+    onOriginalError: (originalError) => {logger.info(originalError.message)},
+    onStoredError: (onStoredError) => {logger.info(onStoredError.message)},
+    onFinalError: (onFinalError) => {logger.info(onFinalError.message)},
+  }
+};
+const formatError = formatErrorGenerator(formatErrorOptions);
+const app = express();
+
+app.use('/graphql',
+  bodyParser.json(),
+  graphqlExpress({
+    formatError,
+    schema
+  })
+);
+
+app.listen(8080)
+```
+
+Use SevenBoom to create your custom error and throwError to throw it.
+```js
+import { SevenBoom, throwError } from 'graphql-apollo-errors';
+
+const resolverThatThrowsError = (root, params, context) => {
+  const errorMessage = `User with id: ${userId} not found`;
+  const errorData = { userId };
+  const errorName = 'USER_NOT_FOUND';
+  throwError(Boom.notFound(errorMessage, errorData, errorName))S;
+}
+```
 
 ## How does it work
 In general this library contain 3 parts:
