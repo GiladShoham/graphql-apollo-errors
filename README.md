@@ -25,6 +25,7 @@ var logger = require('minilog')('errors-logger');
 
 const formatErrorOptions = {
   logger,
+  publicDataPath: 'data.public' // Only data under this path in the data object will be sent to the client
   hooks: {
     onOriginalError: (originalError) => {logger.info(originalError.message)},
     onStoredError: (onStoredError) => {logger.info(onStoredError.message)},
