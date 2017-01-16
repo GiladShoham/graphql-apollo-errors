@@ -16,6 +16,7 @@ Talking with some friends, I understand I'm not alone with this need, so I creat
 
 ## How does it work
 In general this library contain 3 parts:
+
 1. SevenBoom - to create cusomize errors
 2. throw method - which provide a hook place, and also store the error in the memory (because graphql will only give you the message and location)
 3. foramt error function - which knows to fetch the real error by the message, add some hooks point and configuration, and pass it to the client.
