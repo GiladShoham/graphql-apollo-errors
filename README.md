@@ -63,12 +63,12 @@ Enjoy your shiny error on the client
   "data": {},
   "errors": [
     {
-      statusCode: '404'
-      error: 'Not Found'
-      message: 'User with id: 123 not found.'
-      code: 'USER_NOT_FOUND'
-      timeThrown: "2017-01-16T21:25:58.536Z"
-      guid: 'b6c44655-0aae-486a-8d28-533db6c6c343'
+      statusCode: '404',
+      error: 'Not Found',
+      message: 'User with id: 123 not found.',
+      code: 'USER_NOT_FOUND',
+      timeThrown: "2017-01-16T21:25:58.536Z",
+      guid: 'b6c44655-0aae-486a-8d28-533db6c6c343',
       data: {
         userId: '123'
       }
