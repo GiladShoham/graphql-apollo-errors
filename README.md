@@ -58,7 +58,7 @@ const getUserByIdResolver = (root, { userId }, context) => {
     const errorMessage = `User with id: ${userId} not found`;
     const errorData = { userId };
     const errorName = 'USER_NOT_FOUND';
-    throwError(SevenBoom.notFound(errorMessage, errorData, errorName))S;
+    throwError(SevenBoom.notFound(errorMessage, errorData, errorName));
   }
 }
 ```
