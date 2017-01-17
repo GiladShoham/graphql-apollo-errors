@@ -50,7 +50,7 @@ Use SevenBoom to create your custom error and throwError to throw it.
 ```js
 import { SevenBoom, throwError } from 'graphql-apollo-errors';
 
-const resolverThatThrowsError = (root, params, context) => {
+const getUserByIdResolver = (root, { userId }, context) => {
   const errorMessage = `User with id: ${userId} not found`;
   const errorData = { userId };
   const errorName = 'USER_NOT_FOUND';
