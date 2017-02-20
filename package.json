@@ -41,6 +41,7 @@
     "chai-as-promised": "^5.3.0",
     "chai-date-string": "^0.1.0",
     "coveralls": "^2.11.11",
+    "eslint": "^3.15.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^2.5.3",
     "mocha-lcov-reporter": "^1.2.0",
