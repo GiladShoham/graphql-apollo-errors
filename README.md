@@ -39,12 +39,16 @@ const formatErrorOptions = {
     onOriginalError: (originalError) => {logger.info(originalError.message)},
     // This run on the error we stored in the internal error map, this will be the same object as the one you run throwError on
     // In case the error didn't thrown by throwError it will be the same as the one in the originalError
-    onStoredError: (onStoredError) => {logger.info(onStoredError.message)},
+    onStoredError: (storedError) => {logger.info(storedError.message)},
+    // This will run on the processed error, which means after we take if from the stored and convert it to boom error if needed
+    // and after we added the path and location (if requested)
+    // This will run before we take only the payload and the public path of data
+    onProcessedError: (processedError) => {logger.info(processedError.message)},
     // This will run on the final error, it will only contains the output.payload, and if you configured the publicDataPath
     // it will only contain this data under the data object
     // If the error is internal error this error will be a wrapped internal error which not contains the sensitive details
     // This is the error which will be sent to the client
-    onFinalError: (onFinalError) => {logger.info(onFinalError.message)},
+    onFinalError: (finalError) => {logger.info(finalError.message)},
   }
 };
 const formatError = formatErrorGenerator(formatErrorOptions);
