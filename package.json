@@ -51,7 +51,8 @@
     "winston": "^2.2.0"
   },
   "dependencies": {
-    "seven-boom": "^1.0.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "minilog": "^3.1.0",
+    "seven-boom": "^1.0.0"
   }
 }
