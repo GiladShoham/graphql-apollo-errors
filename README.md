@@ -29,6 +29,8 @@ var logger = require('minilog')('errors-logger');
 const formatErrorOptions = {
   logger,
   publicDataPath: 'data.public' // Only data under this path in the data object will be sent to the client
+  showLocations: true, // whether to add the graphql locations to the final error (default false)
+  showPath: true // whether to add the graphql path to the final error (default false)
   hooks: {
     // Will run on the error the formatError function got from apollo/graph - usually this error will contain only
     // message and location (this is actually the reason I build thid library)
@@ -40,7 +42,7 @@ const formatErrorOptions = {
     onStoredError: (onStoredError) => {logger.info(onStoredError.message)},
     // This will run on the final error, it will only contains the output.payload, and if you configured the publicDataPath
     // it will only contain this data under the data object
-    // If the error is internal error this error will be a wrapped internal error which not contains the sensitive details 
+    // If the error is internal error this error will be a wrapped internal error which not contains the sensitive details
     // This is the error which will be sent to the client
     onFinalError: (onFinalError) => {logger.info(onFinalError.message)},
   }
