@@ -4,6 +4,7 @@ This library is fully tested with 100% coverage
 
 [![CircleCI](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master.svg?style=svg)](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/GiladShoham/graphql-apollo-errors/badge.svg?branch=master)](https://coveralls.io/github/GiladShoham/graphql-apollo-errors?branch=master)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CYFBUDM226DLS&lc=IL&item_name=graphql%2dapollo%2derrors&item_number=github%2dnpm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Initiative
 Error handling requires few core features to be usful:
@@ -117,7 +118,7 @@ MIT - Do what ever you want
 I'm open to hear any feedback - new ideas, bugs, needs.
 Feel free to open issues / PR
 
-## Support on Beerpay
+## Support on PayPal
 Hey dude! Help me out for a couple of :beers:!
 
-[![Beerpay](https://beerpay.io/GiladShoham/graphql-apollo-errors/badge.svg?style=beer-square)](https://beerpay.io/GiladShoham/graphql-apollo-errors)  [![Beerpay](https://beerpay.io/GiladShoham/graphql-apollo-errors/make-wish.svg?style=flat-square)](https://beerpay.io/GiladShoham/graphql-apollo-errors?focus=wish)
+[![Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CYFBUDM226DLS&lc=IL&item_name=graphql%2dapollo%2derrors&item_number=github%2dnpm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
