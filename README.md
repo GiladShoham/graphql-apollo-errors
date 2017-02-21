@@ -19,6 +19,9 @@ Both libraries are great start, but they are not powerfull enough for my opinion
 Talking with some friends, I understand I'm not alone with this need, so I created this library as open source.
 
 ## Usage
+
+(Look in the spec files to understand more)
+
 Configure apollo error formatting
 
 ```js
@@ -68,7 +71,48 @@ app.use('/graphql',
 app.listen(8080)
 ```
 
+Init SevenBoom object
+The defalut args for SevenBoom are
+```js
+const defaultArgsDef = [
+  {
+    name : 'errorCode',
+    order: 1
+  }, {
+    name : 'timeThrown',
+    order: 2,
+    default: null
+  }, {
+    name : 'guid',
+    order: 3,
+    default: null
+  }
+];
+```
+If you want you can change it using the initSevenBoom function:
+```js
+import { initSevenBoom } from 'graphql-apollo-errors';
+const customArgsDefs = [
+  {
+    name : 'errorCode',
+    order: 1
+  }
+];
+initSevenBoom(customArgsDefs);
+```
+
 Use SevenBoom to create your custom error and throwError to throw it.
+
+throwError received 3 arguments:
+* The error to throw
+* An hook to run on the first arg (the error)
+* A path to the guid - this path is used to make sure you will have the same guid in the server / log / db and in the client.
+If the path exist in the error object it will used it as the guid in internal map (this will also be the message for the thrown error)
+If not, it will generate guid using uuid v4 and set this guid in the provided path.
+All paths are relative to the err.output.payload, and should be separated by .
+The default path if not provided is just 'guid'.
+(This path exist by default because the default argsDefs for seven-boom contain it)
+
 ```js
 import { SevenBoom, throwError } from 'graphql-apollo-errors';
 
@@ -80,7 +124,9 @@ const getUserByIdResolver = (root, { userId }, context) => {
     const errorMessage = `User with id: ${userId} not found`;
     const errorData = { userId };
     const errorName = 'USER_NOT_FOUND';
-    throwError(SevenBoom.notFound(errorMessage, errorData, errorName));
+    const err = SevenBoom.notFound(errorMessage, errorData, errorName);
+    const myHook = (err) => {console.log(err.message)};
+    throwError(err, myHook);
   }
 }
 ```
