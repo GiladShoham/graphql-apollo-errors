@@ -31,9 +31,9 @@ var logger = require('minilog')('errors-logger');
 
 const formatErrorOptions = {
   logger,
-  publicDataPath: 'public' // Only data under this path in the data object will be sent to the client (path parts should be seperated by . - some.public.path)
+  publicDataPath: 'public', // Only data under this path in the data object will be sent to the client (path parts should be seperated by . - some.public.path)
   showLocations: true, // whether to add the graphql locations to the final error (default false)
-  showPath: true // whether to add the graphql path to the final error (default false)
+  showPath: true, // whether to add the graphql path to the final error (default false)
   hooks: {
     // Will run on the error the formatError function got from apollo/graph - usually this error will contain only
     // message and location (this is actually the reason I build thid library)
