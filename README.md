@@ -31,7 +31,7 @@ var logger = require('minilog')('errors-logger');
 
 const formatErrorOptions = {
   logger,
-  publicDataPath: 'data.public' // Only data under this path in the data object will be sent to the client
+  publicDataPath: 'public' // Only data under this path in the data object will be sent to the client (path parts should be seperated by . - some.public.path)
   showLocations: true, // whether to add the graphql locations to the final error (default false)
   showPath: true // whether to add the graphql path to the final error (default false)
   hooks: {
