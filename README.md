@@ -1,5 +1,6 @@
 # graphql-apollo-errors
 A small library to handle graphql and apollo errors in a better way
+This library is fully tested with 100% coverage
 
 [![CircleCI](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master.svg?style=svg)](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/GiladShoham/graphql-apollo-errors/badge.svg?branch=master)](https://coveralls.io/github/GiladShoham/graphql-apollo-errors?branch=master)
