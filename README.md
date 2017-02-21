@@ -1,5 +1,6 @@
 # graphql-apollo-errors
 A small library to handle graphql and apollo errors in a better way
+
 This library is fully tested with 100% coverage
 
 [![CircleCI](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master.svg?style=svg)](https://circleci.com/gh/GiladShoham/graphql-apollo-errors/tree/master)
@@ -7,7 +8,7 @@ This library is fully tested with 100% coverage
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CYFBUDM226DLS&lc=IL&item_name=graphql%2dapollo%2derrors&item_number=github%2dnpm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Initiative
-Error handling requires few core features to be usful:
+Error handling requires few core features to be useful:
 * Ability to customize error in well defined structure cross app
 * Ability to hook the error bubbling (In order to log or store the errors somewhere)
 * Ability to send the error to the client while sending all the relevant information yet keeping all the sensitive information only on the server
@@ -121,4 +122,4 @@ Feel free to open issues / PR
 ## Support on PayPal
 Hey dude! Help me out for a couple of :beers:!
 
-[![Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CYFBUDM226DLS&lc=IL&item_name=graphql%2dapollo%2derrors&item_number=github%2dnpm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CYFBUDM226DLS&lc=IL&item_name=graphql%2dapollo%2derrors&item_number=github%2dnpm&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
