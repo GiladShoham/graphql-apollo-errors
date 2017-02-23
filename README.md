@@ -15,7 +15,7 @@ Error handling requires few core features to be useful:
 
 Looking around I found only 2 libraries dealing with errors in graphql and apollo - [graphql-errors](https://github.com/kadirahq/graphql-errors) , [apollo-errors](https://github.com/thebigredgeek/apollo-errors).
 
-Both libraries are great start, but they are not powerfull enough for my opinion, therefore I decided to write my own error handler.
+Both libraries are great start, but they are not powerful enough for my opinion, therefore I decided to write my own error handler.
 Talking with some friends, I understand I'm not alone with this need, so I created this library as open source.
 
 ## Usage
@@ -34,21 +34,16 @@ var logger = require('minilog')('errors-logger');
 
 const formatErrorOptions = {
   logger,
-  publicDataPath: 'public', // Only data under this path in the data object will be sent to the client (path parts should be seperated by . - some.public.path)
+  publicDataPath: 'public', // Only data under this path in the data object will be sent to the client (path parts should be separated by . - some.public.path)
   showLocations: true, // whether to add the graphql locations to the final error (default false)
   showPath: true, // whether to add the graphql path to the final error (default false)
   hideSensitiveData: false, // whether to remove the data object from internal server errors (default true)
   hooks: {
-    // Will run on the error the formatError function got from apollo/graph - usually this error will contain only
-    // message and location (this is actually the reason I build thid library)
-    // In our case the message will be a guid v4 (if you throw the error via throwError) or the real message
-    // if you throw it regular (this is sometime happens when the throw is not done by you but by 3rd party like mongo)
+    // This run on the error you really throw from your code (not the graphql error - it means not with path and locations)
     onOriginalError: (originalError) => {logger.info(originalError.message)},
-    // This run on the error we stored in the internal error map, this will be the same object as the one you run throwError on
-    // In case the error didn't thrown by throwError it will be the same as the one in the originalError
-    onStoredError: (storedError) => {logger.info(storedError.message)},
-    // This will run on the processed error, which means after we take if from the stored and convert it to boom error if needed
+    // This will run on the processed error, which means after we convert it to boom error if needed
     // and after we added the path and location (if requested)
+    // If the error is not a boom error, this error won't include the original message but general internal server error message
     // This will run before we take only the payload and the public path of data
     onProcessedError: (processedError) => {logger.info(processedError.message)},
     // This will run on the final error, it will only contains the output.payload, and if you configured the publicDataPath
@@ -102,20 +97,10 @@ const customArgsDefs = [
 initSevenBoom(customArgsDefs);
 ```
 
-Use SevenBoom to create your custom error and throwError to throw it.
-
-throwError received 3 arguments:
-* The error to throw
-* An hook to run on the first arg (the error)
-* A path to the guid - this path is used to make sure you will have the same guid in the server / log / db and in the client.
-If the path exist in the error object it will used it as the guid in internal map (this will also be the message for the thrown error)
-If not, it will generate guid using uuid v4 and set this guid in the provided path.
-All paths are relative to the err.output.payload, and should be separated by .
-The default path if not provided is just 'guid'.
-(This path exist by default because the default argsDefs for seven-boom contain it)
+Use SevenBoom to create your custom error and throw it.
 
 ```js
-import { SevenBoom, throwError } from 'graphql-apollo-errors';
+import { SevenBoom } from 'graphql-apollo-errors';
 
 // A resolver which throws error
 const getUserByIdResolver = (root, { userId }, context) => {
@@ -126,8 +111,7 @@ const getUserByIdResolver = (root, { userId }, context) => {
     const errorData = { userId };
     const errorName = 'USER_NOT_FOUND';
     const err = SevenBoom.notFound(errorMessage, errorData, errorName);
-    const myHook = (err) => {console.log(err.message)};
-    throwError(err, myHook);
+    throw(err);
   }
 }
 ```
@@ -151,13 +135,16 @@ Enjoy your shiny error on the client
   ]
 }
 ```
+## Upgrade from v1.*.*
+There is a lot of changes from v1. (In the implementation, which leads to API changes)
+* onStoredError hook is no longer exist (actually the onOriginalError result is the same as the onStoredError before)
+* You should not use the throwError any more (it was deleted), you can use the native throw now.
 
 ## How does it work
-In general this library contain 3 parts:
+In general this library contain 2 parts:
 
-1. [SevenBoom](https://github.com/GiladShoham/seven-boom) - A small library i wrote to create cusomize errors
-2. throw method - which provide a hook place, and also store the error in the memory (because graphql will only give you the message and location)
-3. foramt error function - which knows to fetch the real error by the message, add some hooks point and configuration, and pass it to the client.
+1. [SevenBoom](https://github.com/GiladShoham/seven-boom) - A small library i wrote to create customize errors
+2. format error function - which knows to fetch the real error, hide sensitive server data, add some hooks points and configuration, and pass it to the client.
 
 ## License
 MIT - Do what ever you want
