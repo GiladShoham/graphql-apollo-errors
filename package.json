@@ -1,6 +1,6 @@
 {
   "name": "graphql-apollo-errors",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A small library to handle graphql and apollo errors in a better way",
   "main": "dist/index.js",
   "scripts": {
