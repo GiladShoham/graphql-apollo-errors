@@ -51,7 +51,9 @@ const formatErrorOptions = {
     // If the error is internal error this error will be a wrapped internal error which not contains the sensitive details
     // This is the error which will be sent to the client
     onFinalError: (finalError) => {logger.info(finalError.message)},
-  }
+  },
+  nonBoomTransformer: (nonBoomError) => {error instanceof GraphQLError ? SevenBoom.badRequest(error.message) : SevenBoom.badImplementation(error)}
+  // Optional function to transform non-Boom errors, such as those from Apollo & other 3rd-party libraries, into Boom errors
 };
 const formatError = formatErrorGenerator(formatErrorOptions);
 const app = express();
