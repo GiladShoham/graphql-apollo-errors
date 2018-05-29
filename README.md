@@ -124,7 +124,7 @@ Enjoy your shiny error on the client
   "data": {},
   "errors": [
     {
-      statusCode: '404',
+      statusCode: 404,
       error: 'Not Found',
       message: 'User with id: 123 not found.',
       code: 'USER_NOT_FOUND',
