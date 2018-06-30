@@ -16,13 +16,13 @@ export interface ErrorResult {
   message: string;
   data: any;
   output: {
-    statusCode: string;
+    statusCode: number;
     payload: ErrorPayload
   };
 }
 
 export interface ErrorPayload {
-  statusCode: string;
+  statusCode: number;
   error: string;
   message: string;
   errorName?: string;
